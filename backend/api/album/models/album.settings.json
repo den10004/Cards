@@ -20,6 +20,9 @@
     },
     "link": {
       "type": "richtext"
+    },
+    "price": {
+      "type": "decimal"
     }
   }
 }
