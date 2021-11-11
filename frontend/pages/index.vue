@@ -1,9 +1,7 @@
 <template>
   <div class="container">
-    <img src="https://items.s1.citilink.ru/1399244_v01_b.jpg" alt="sdsd" />
     <div class="cards">
       <div v-for="album in albums" :key="album.id" class="card">
-        <div class="item">{{ album.link }}</div>
         <h3>{{ album.name }}</h3>
         <p>{{ album.description }}</p>
       </div>
@@ -50,11 +48,10 @@ export default {
 }
 
 .card p {
- margin: 0;
+  margin: 0;
 }
 
 .card p {
-  margin: 10px auto 10px auto
+  margin: 10px auto 10px auto;
 }
-
 </style>
