@@ -1,0 +1,18 @@
+{
+  "kind": "collectionType",
+  "collectionName": "his",
+  "info": {
+    "name": "hi"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "hello": {
+      "type": "string"
+    }
+  }
+}
