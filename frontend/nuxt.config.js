@@ -32,9 +32,9 @@ export default {
   ],
 
   // Modules: https://go.nuxtjs.dev/config-modules
-  modules: ['@nuxtjs/strapi' ],
+  modules: ['@nuxtjs/strapi'],
   strapi: {
-    entities: ['albums', 'name'],
+    entities: ['albums', 'his'],
     url: 'http://localhost:1337'
   },
 
