@@ -1,13 +1,4 @@
-import "./App.css";
-import Card from "./Card";
-import ContentBlock from "./ContentBlock/ContentBlock";
-import FooterBlock from "./FooterBlock/FooterBlock";
-import HeaderBlock from "./HeaderBlock";
-
-
-
-function App() {
- const wordsList = [
+export const wordsList = [
     {
         eng: 'between',
         rus: 'между'
@@ -53,25 +44,3 @@ function App() {
         rus: 'покидать'
     },
 ];
-
-
-
-  return (
-    <div className="App">
-      <HeaderBlock 
-      title="Учите слова"
-      descr="Воспользуйтесь карточками для запоминания и пополнения активныйх
-      словарных запасов"
-      />
-     {
-       wordsList.map(({eng, rus}, index) => 
-       <Card key={index} eng={eng} rus={rus} />)
-     }
-      <ContentBlock />
-      <FooterBlock />
-
-    </div>
-  );
-}
-
-export default App;
