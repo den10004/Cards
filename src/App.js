@@ -1,98 +1,49 @@
-import React from 'react';
-
-import { ClockCircleOutlined, HomeOutlined, SmileOutlined } from '@ant-design/icons';
-
-import BackgroundBlock from './components/BackgroundBlock';
-import Button from './components/Button';
-import CardList from './components/CardList';
-import Footer from './components/Footer';
-import Header from './components/Header';
-import Paragraph from './components/Paragraph';
-import Section from './components/Section';
-
-import { wordsList } from './wordsList';
-
-import firstBackground from './assets/background.jpg';
-import secondBackground from './assets/back2.jpg';
-
-import s from './App.module.scss';
-
+import axios from "axios";
+import { useEffect, useState } from "react";
+import "./App.css";
+import Cards from "./Components/Cards";
+import Pagination from "./Components/Pagination/Pagination";
 
 function App() {
-    return (
-        <>
-            <BackgroundBlock
-                backgroundImg={firstBackground}
-                fullHeight
-            >
-                <Header white>
-                    Время учить слова онлайн
-                </Header>
-                <Paragraph white>
-                    Используйте карточки для запоминания и пополняйте активный словарный запас.
-                </Paragraph>
-            </BackgroundBlock>
-            <Section className={s.textCenter}>
-                <Header size="l">
-                    Мы создали уроки, чтобы помочь вам увереннее разговаривать на английском языке
-                </Header>
-                <div className={s.motivation}>
-                    <div className={s.motivationBlock}>
-                        <div className={s.icons}>
-                            <ClockCircleOutlined /> 
-                        </div>
-                        <Paragraph small>
-                            Учитесь, когда есть свободная минутка
-                        </Paragraph>
-                    </div>
+  const [cards, setCards] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [cardsPerPage] = useState(96);
 
-                    <div className={s.motivationBlock}>
-                        <div className={s.icons}>
-                            <HomeOutlined />
-                        </div>
-                        <Paragraph small>
-                            Откуда угодно — дома, в&nbsp;офисе, в&nbsp;кафе
-                        </Paragraph>
-                    </div>
+  useEffect(() => {
+    const getCards = async () => {
+      const res = await axios.get("http://jsonplaceholder.typicode.com/photos");
+      setCards(res.data);
+    };
 
-                    <div className={s.motivationBlock}>
-                        <div className={s.icons}>
-                            <SmileOutlined />
-                        </div>
-                        <Paragraph small>
-                            Разговоры по-английски без&nbsp;неловких пауз и&nbsp;«mmm,&nbsp;how&nbsp;to&nbsp;say…»
-                        </Paragraph>
-                    </div>
-                </div>
-            </Section>
-            <Section bgColor="#f0f0f0" className={s.textCenter}>
-                <Header size='l'>
-                    Начать учить английский просто
-                </Header>
-                <Paragraph>
-                    Клика по карточкам и узнавай новые слова, быстро и легко!
-                </Paragraph>
+    getCards();
+  }, []);
 
-                <CardList 
-                    items={wordsList}
-                />
-            </Section>
-            <BackgroundBlock
-                backgroundImg={secondBackground}
-            >
-                <Header size="l" white>
-                    Изучайте английский с персональным сайтом помощником
-                </Header>
-                <Paragraph white>
-                    Начните прямо сейчас
-                </Paragraph>
-                <Button>
-                    Начать бесплатный урок
-                </Button>
-            </BackgroundBlock>
-            <Footer/>
-        </>
-    );
+  const lastCardIndex = currentPage * cardsPerPage;
+  const firstCardIndex = lastCardIndex - cardsPerPage;
+  const currentCountry = cards.slice(firstCardIndex, lastCardIndex);
+
+  const paginate = (pageNumber) => setCurrentPage(pageNumber);
+  const nextPage = () => setCurrentPage((prev) => prev + 1);
+  const prevPage = () => setCurrentPage((prev) => prev - 1);
+
+  return (
+    <div className="App w-95 mt-5">
+      <Cards cards={currentCountry} />
+      <Pagination
+        cardsPerPage={cardsPerPage}
+        totalCards={cards.length}
+        paginate={paginate}
+      />
+      <div className="p-10">
+        <button className="btn btn-primary" onClick={prevPage}>
+          Prev
+        </button>
+        <button className="btn btn-primary ms-2" onClick={nextPage}>
+          Next
+        </button>
+      </div>
+    </div>
+  );
 }
 
 export default App;
