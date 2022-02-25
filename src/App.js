@@ -9,6 +9,8 @@ function App() {
   const [currentPage, setCurrentPage] = useState(1);
   const [cardsPerPage] = useState(96);
 
+  console.log(cards);
+
   useEffect(() => {
     const getCards = async () => {
       const res = await axios.get("http://jsonplaceholder.typicode.com/photos");
@@ -28,14 +30,31 @@ function App() {
 
   function deleteCard(id) {
     const idx = cards.findIndex((item) => item.id === id);
-
     const newCards = [...cards.slice(0, idx), ...cards.slice(idx + 1)];
-
     setCards(newCards);
+  }
+ 
+  function decrease() {
+    let res = [...cards].sort((a, b) => (a["id"] < b["id"] ? 1 : -1));
+    setCards(res);
+  }
+
+  function increase() {
+    let res = [...cards].sort((a, b) => (a["id"] > b["id"] ? 1 : -1));
+    setCards(res);
   }
 
   return (
     <div className="App w-95 mt-5">
+      <div className="p-10">
+        Сортировка по Id
+        <button className="btn btn-primary" onClick={decrease}>
+          По убыванию
+        </button>
+        <button className="btn btn-primary ms-2" onClick={increase}>
+          По возрастанию
+        </button>
+      </div>
       <Cards cards={currentCountry} deleteCard={deleteCard} />
       <Pagination
         cardsPerPage={cardsPerPage}
