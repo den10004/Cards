@@ -26,9 +26,17 @@ function App() {
   const nextPage = () => setCurrentPage((prev) => prev + 1);
   const prevPage = () => setCurrentPage((prev) => prev - 1);
 
+  function deleteCard(id) {
+    const idx = cards.findIndex((item) => item.id === id);
+
+    const newCards = [...cards.slice(0, idx), ...cards.slice(idx + 1)];
+
+    setCards(newCards);
+  }
+
   return (
     <div className="App w-95 mt-5">
-      <Cards cards={currentCountry} />
+      <Cards cards={currentCountry} deleteCard={deleteCard} />
       <Pagination
         cardsPerPage={cardsPerPage}
         totalCards={cards.length}

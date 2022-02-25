@@ -1,16 +1,21 @@
 .Cards {
-display: flex;
-flex-wrap: wrap;
-margin: 0 auto;
-width: 96%;
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0 auto;
+  width: 96%;
 }
 
 .Cards__item {
-    width: 100px;
-    height: 100px;
-    border: 1px solid red;
+  width: 100px;
+  border: 1px solid red;
 }
 
 .Cards__item > img {
-    width: 100%;
+  width: 80%;
+}
+
+.Cards__item > button {
+  border: 0;
+  background: white;
+  cursor: pointer;
 }
