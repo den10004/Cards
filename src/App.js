@@ -9,8 +9,6 @@ function App() {
   const [currentPage, setCurrentPage] = useState(1);
   const [cardsPerPage] = useState(96);
 
-  console.log(cards);
-
   useEffect(() => {
     const getCards = async () => {
       const res = await axios.get("http://jsonplaceholder.typicode.com/photos");
@@ -33,7 +31,7 @@ function App() {
     const newCards = [...cards.slice(0, idx), ...cards.slice(idx + 1)];
     setCards(newCards);
   }
- 
+
   function decrease() {
     let res = [...cards].sort((a, b) => (a["id"] < b["id"] ? 1 : -1));
     setCards(res);

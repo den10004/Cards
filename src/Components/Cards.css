@@ -19,3 +19,17 @@
   background: white;
   cursor: pointer;
 }
+
+
+.ModalActive {
+  position: absolute;
+  background: white;
+  width: 350px;
+  height: 350px;
+  top: 100px;
+  left: 30%;
+}
+
+.ModalActiveDeactive {
+  display: none;
+}
