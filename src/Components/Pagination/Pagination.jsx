@@ -8,7 +8,7 @@ function Pagination({cardsPerPage, totalCards, paginate}) {
     }
    
   return (
-    <ul className="pagination d-flex flex-wrap p-5">
+    <ul className="pagination d-flex flex-wrap mt-5 mb-2">
         {
            pageNumbers.map(number => (
                <li className="page-item" key={number}>

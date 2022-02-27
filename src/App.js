@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import "./App.css";
-import Cards from "./Components/Cards";
+import Cards from "./Components/Cards/Cards";
 import Pagination from "./Components/Pagination/Pagination";
 
 function App() {
@@ -14,7 +14,6 @@ function App() {
       const res = await axios.get("http://jsonplaceholder.typicode.com/photos");
       setCards(res.data);
     };
-
     getCards();
   }, []);
 
@@ -44,9 +43,9 @@ function App() {
 
   return (
     <div className="App w-95 mt-5">
-      <div className="p-10">
+      <div className="p-10 mb-3">
         Сортировка по Id
-        <button className="btn btn-primary" onClick={decrease}>
+        <button className="btn btn-primary ms-2" onClick={decrease}>
           По убыванию
         </button>
         <button className="btn btn-primary ms-2" onClick={increase}>

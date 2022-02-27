@@ -8,10 +8,12 @@
 .Cards__item {
   width: 100px;
   border: 1px solid red;
+  padding: 5px;
 }
 
 .Cards__item > img {
-  width: 80%;
+  width: 100%;
+  cursor: pointer;
 }
 
 .Cards__item > button {
@@ -24,10 +26,11 @@
 .ModalActive {
   position: absolute;
   background: white;
+  border-radius: 10px;
+  border: 1px solid black;
   width: 350px;
-  height: 350px;
   top: 100px;
-  left: 30%;
+  left: 40%;
 }
 
 .ModalActiveDeactive {
